@@ -20,27 +20,29 @@ namespace Core_3._1.Controllers
 {
     public class Buildings
     {
-        public async Task<IActionResult> Building()
+        public async Task<IActionResult> Index()
         {
             List<Building> BuildingsList = new List<Building>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://shimwerestapi.azurewebsites.net/api/buildings/{id}"))
+                using (var response = await httpClient.GetAsync("https://shimwerestapi.azurewebsites.net/api/buildings/id"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     BuildingsList = JsonConvert.DeserializeObject<List<Building>>(apiResponse);
                 }
             }
-            return View(BuildingsList);
+
+
+
+            return View();
+
 
         }
 
-        private IActionResult View(List<Building> buildingsList)
+        private IActionResult View()
         {
             throw new NotImplementedException();
         }
     }
-
-
 
 }

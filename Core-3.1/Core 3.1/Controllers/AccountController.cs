@@ -7,6 +7,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SLE_System.Models;
 
+using System.Diagnostics;
+using Microsoft.Extensions.Logging;
+using Core_3._1.Models;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+using System.Net;
+using System.IO;
+
 namespace Core_3._1.Controllers
 {
     public class AccountController : Controller
@@ -30,7 +39,11 @@ namespace Core_3._1.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+
+            var httpClient = new HttpClient();
+           HttpResponseMessage response =  await httpClient.GetAsync("http://localhost:5000/api/customers/{Model.email}");
+
+            if (ModelState.IsValid && response.StatusCode == HttpStatusCode.OK)
             {
                 var user = new IdentityUser
                 {
