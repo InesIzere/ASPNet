@@ -41,9 +41,9 @@ namespace Core_3._1.Controllers
         {
 
             var httpClient = new HttpClient();
-           HttpResponseMessage response =  await httpClient.GetAsync("http://localhost:5000/api/customers/{Model.email}");
+             var response =  await httpClient.GetAsync(requestUri:$"http://localhost:5000/api/customers/{model.Email}");
 
-            if (ModelState.IsValid && response.StatusCode == HttpStatusCode.OK)
+            if (ModelState.IsValid && response.StatusCode == HttpStatusCode.OK && response.Content.Headers.ContentLength>2)
             {
                 var user = new IdentityUser
                 {

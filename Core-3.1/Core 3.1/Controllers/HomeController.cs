@@ -31,36 +31,20 @@ namespace Core_3._1.Controllers
 
         [Authorize]
 
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-
         public async Task<IActionResult> Index()
         {
             List<Building> BuildingsList = new List<Building>();
             using (var httpClient = new HttpClient())
             {
-                string api = "https://shimwerestapi.azurewebsites.net/api/buildings/{0}/building";
+                string api = "http://localhost:5000/api/api/buildings/{0}/building";
 
 
                 string data = User.Identity.Name;
-                string url3 = string.Format(api, data);
+                string url = string.Format(api, data);
 
-                Console.WriteLine(url3);
-                using (var response = await httpClient.GetAsync(url3))
+                Console.WriteLine(url);
+                using (var response = await httpClient.GetAsync(url))
 
-                
-                
-                
                 {
 
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -115,6 +99,31 @@ namespace Core_3._1.Controllers
 
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+
+        //public ActionResult Admin()
+        //{
+        //    string apiUri = Url.HttpRouteUrl("DefaultApi", new { controller = "admin", });
+        //    ViewBag.ApiUrl = new Uri(Request.Url, apiUri).AbsoluteUri.ToString();
+
+        //    return View();
+
+
+
+
+                       // <h1> Html.Raw(ViewData.elevatorTable)</h1>
+        //}
 
 
 

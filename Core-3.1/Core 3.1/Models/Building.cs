@@ -7,6 +7,8 @@ namespace Core_3._1.Models
 {
     public partial class Building
     {
+        internal string ReturnedJson;
+
         public Building()
         {
             Battery = new HashSet<Battery>();

@@ -9,9 +9,9 @@
         <h1 class="display-4">Welcome</h1>
         <!-- <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> -->
     </div>
-    <h2>All Reservations</h2>
+    @*<h2>All Reservations</h2>
     <a asp-action="AddReservation" class="btn btn-sm btn-primary">Add Reservation</a>
-    <a asp-action="GetReservation" class="btn btn-sm btn-secondary">Get Reservation</a>
+    <a asp-action="GetReservation" class="btn btn-sm btn-secondary">Get Reservation</a>*@
 
     @if (Model != null && Model.Count > 0)
     {
@@ -55,7 +55,7 @@
                         <td>@r.BuildingDetails</td>
                         <td>@r.Intervention</td>
 
-                        <td>
+                        @*<td>
 
                             <a asp-action="UpdateReservation" asp-route-id="@r.Id"></a>
                         </td>
@@ -65,7 +65,7 @@
                                 <input type="hidden" value="@r.Id" name="BuildingId" />
                                 <input type="image" src="/icon/close.png" />
                             </form>
-                        </td>
+                        </td>*@
                     </tr>
                 }
             </tbody>
