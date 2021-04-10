@@ -7,13 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Core_3._1.Models;
 using Microsoft.AspNetCore.Authorization;
-
-
-
 using System.Net.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Identity;
-
 using System.Text;
 using System.Net;
 using System.IO;
@@ -81,14 +77,6 @@ namespace Core_3._1.Controllers
         //    return View(building);
         //}
 
-  
-
-
-
-
-
-
-
             //foreach (Building e in objResponse3)
             //{
             //    ViewBag.BuldingController += $"<option value='{e.Id}' name='{e.Id}' >Building # {e.Id} </option>";
@@ -130,13 +118,6 @@ namespace Core_3._1.Controllers
             //    }
             //}
             //return View(ElevatorsList);
-
-
-
-
-
-        
-        
 
         public IActionResult Privacy()
         {
@@ -183,9 +164,6 @@ namespace Core_3._1.Controllers
         {
         }
 
-     
-       
-
         private UserManager<CustomerUser> _userManager { get; set; }
 
         private readonly ProductService _productService = new ProductService();
@@ -193,9 +171,6 @@ namespace Core_3._1.Controllers
         public ProductService ProductService => ProductService;
 
         private UserManager<CustomerUser> userManager { get; set; }
-
-
-
 
     }
 }

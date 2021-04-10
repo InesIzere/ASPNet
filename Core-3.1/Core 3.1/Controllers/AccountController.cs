@@ -10,6 +10,7 @@ using SLE_System.Models;
 
 namespace Core_3._1.Controllers
 {
+
     public class AccountController : Controller
     {
 
@@ -32,10 +33,10 @@ namespace Core_3._1.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
 
-            var httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.GetAsync("https://localhost:5000/api/customers/email/{model.Email}");
-
-            if (ModelState.IsValid && response.StatusCode == System.Net.HttpStatusCode.OK)
+            //var httpClient = new HttpClient();
+            //HttpResponseMessage response = await httpClient.GetAsync("https://rocketclevatorscustomer.herokuapp.com/api/customers/email/{model.Email}");
+            // && response.StatusCode == System.Net.HttpStatusCode.OK
+            if (ModelState.IsValid)
             {
                 var user = new IdentityUser
                 {
@@ -49,7 +50,7 @@ namespace Core_3._1.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 foreach (var error in result.Errors)

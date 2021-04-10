@@ -1,0 +1,8 @@
+﻿appsettings.json
+config/applicationhost.config
+/Core 3.1/appsettings.json
+/Core 3.1/bin/Debug/netcoreapp3.1/Core 3.1.runtimeconfig.dev.json
+/Core 3.1/bin/Debug/netcoreapp3.1/appsettings.json
+/Core 3.1/obj/Core 3.1.csproj.nuget.dgspec.json
+/Core 3.1/obj/Core 3.1.csproj.nuget.g.props
+/Debug/

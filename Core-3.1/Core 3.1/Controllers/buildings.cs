@@ -29,7 +29,7 @@ namespace Core_3._1.Controllers
             using (var client = new HttpClient())
             {
 
-                client.BaseAddress = new Uri("http://localhost:5000/api/");
+                client.BaseAddress = new Uri("https://rocketclevatorscustomer.herokuapp.com/api");
                 var responseTask = client.GetAsync("buildings");
                 responseTask.Wait();
                 var result = responseTask.Result;

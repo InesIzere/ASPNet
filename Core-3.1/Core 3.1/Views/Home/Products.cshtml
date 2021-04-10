@@ -32,13 +32,13 @@
     var batteryId = 0;
     // get customer's id by "email" end-point, return the response's data type to json
     console.log(userEmail);
-    fetch("http://localhost:5000/api/customers/email/" + userEmail).then(response => { return (response.json()) })
+    fetch("https://rocketclevatorscustomer.herokuapp.com/api/customers/email/" + userEmail).then(response => { return (response.json()) })
         .then(customer => {
             userId = customer.id;
            // getBatteries();
        
 
-    fetch("http://localhost:5000/api/buildings/customer/" + customer.id).then(response => { return (response.json()) })
+        fetch("https://rocketclevatorscustomer.herokuapp.com/api/buildings/customer/" + customer.id).then(response => { return (response.json()) })
         .then(buildings => {
             console.log(buildings);
             if (!buildings)
@@ -56,7 +56,7 @@
 
     function getBatteries(buildingId) {
         $("#cnbattery").removeClass("d-none");
-        fetch("http://localhost:5000/api/batteries/customer/" + buildingId).then(response => { return (response.json()) })
+        fetch("https://rocketclevatorscustomer.herokuapp.com/api/batteries/customer/" + buildingId).then(response => { return (response.json()) })
             .then(batteries => {
                 console.log(batteries);
                 if (!batteries)
@@ -101,7 +101,7 @@
 
 function getColumns(batteryid) {
         $("#cncolumn").removeClass("d-none");
-        fetch("http://localhost:5000/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
+        fetch("https://rocketclevatorscustomer.herokuapp.com/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
             .then(columns => {
                 console.log(columns);
                 if (!columns) {
@@ -120,7 +120,7 @@ function getColumns(batteryid) {
 // get elevators based on columns_id
 function getElevators(columnid) {
         $("#cnelevator").removeClass("d-none");
-    fetch("http://localhost:5000/api/elevators/customer/" + columnid).then(response => { return (response.json()) })
+    fetch("https://rocketclevatorscustomer.herokuapp.com/api/elevators/customer/" + columnid).then(response => { return (response.json()) })
         .then(elevators => {
             console.log(elevators);
                 $('#selevator').html(elevators.map(y => {

@@ -7,8 +7,8 @@
 @inject UserManager<IdentityUser> UserManager
 @model Intervention
 <h2 class="text-center" style="margin-top: 80px; margin-bottom: 50px"> INTERVENTION FORM</h2>
-<!-- INtervention form -->
-<h3>
+<!-- Intervention form -->
+
     <div class="col-md-10 text-center selcust" style="font-size: 20px; margin-top: 10px">
         <label for="scustomer">Customer*</label>
         <input read-only value="@UserManager.GetUserName(User)" id="scustomer" class="form-control text-center" />
@@ -49,8 +49,7 @@
         <label id="lblmessagesucess" class="text-success d-none">Add intervention successful</label>
         <label id="lblmessagefailied" class="text-error d-none">Add intervention failed</label>
     </div>
-    </div>
-</h3>
+
 <div class="row">
     <div class="col-md-12 text-center" style="margin-top: 20px">
         <button id="btnsubmit" type="button" class="btn btn-red">SUBMIT</button>
@@ -67,12 +66,12 @@
 
 
    console.log(userEmail);
-    fetch("http://localhost:5000/api/customers/email/" + userEmail).then(response => { return (response.json()) })
+    fetch("https://rocketclevatorscustomer.herokuapp.com/api/customers/email/" + userEmail).then(response => { return (response.json()) })
         .then(customer => {
             console.log(customer.id);
            
             userId = customer.id;
-            fetch("http://localhost:5000/api/buildings/customer/" + customer.id).then(response => { return (response.json()) })
+            fetch("https://rocketclevatorscustomer.herokuapp.com/api/buildings/customer/" + customer.id).then(response => { return (response.json()) })
                 .then(buildings => {
                     console.log(buildings);
                     if (!buildings)
@@ -88,7 +87,7 @@
         });
     function getBatteries(buildingId) {
         $("#cnbattery").removeClass("d-none");
-        fetch("http://localhost:5000/api/batteries/customer/" + buildingId).then(response => { return (response.json()) })
+        fetch("https://rocketclevatorscustomer.herokuapp.com/api/batteries/customer/" + buildingId).then(response => { return (response.json()) })
             .then(batteries => {
                 if(!batteries)
                     return;
@@ -104,7 +103,7 @@
     }
 function getColumns(batteryid) {
         $("#cncolumn").removeClass("d-none");
-    fetch("http://localhost:5000/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
+    fetch("https://rocketclevatorscustomer.herokuapp.com/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
             .then(columns => {
                 if (!columns){
                     return;
@@ -119,7 +118,7 @@ function getColumns(batteryid) {
 }
 function getElevators(columnid) {
         $("#cnelevator").removeClass("d-none");
-    fetch("http://localhost:5000/api/elevators/customer/" + columnid).then(response => { return (response.json()) })
+    fetch("https://rocketclevatorscustomer.herokuapp.com/api/elevators/customer/" + columnid).then(response => { return (response.json()) })
             .then(elevators => {
                 $('#selevator').html(elevators.map(y => {
                     return '<option value="' + y.id + '">' + y.id + '</option>';
