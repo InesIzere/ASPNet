@@ -1,0 +1,132 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Products Management";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Your Products</h2>
+        </div>
+    </div>
+    <div class="row">
+        <p class="text-center w-100">Batteries</p>
+        <div class="col-12 text-center" id="sbattery">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <p class="text-center w-100">Columns</p>
+        <div class="col-12 text-center" id="scolumn">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <p class="text-center w-100">Elevators</p>
+        <div class="col-12 text-center" id="selevator">
+        </div>
+    </div>
+</div>
+
+<script>
+    var userEmail = '@UserManager.GetUserName(User)';
+    var userId = 0;
+    var batteryId = 0;
+    // get customer's id by "email" end-point, return the response's data type to json
+    console.log(userEmail);
+    fetch("http://localhost:5000/api/customers/email/" + userEmail).then(response => { return (response.json()) })
+        .then(customer => {
+            userId = customer.id;
+           // getBatteries();
+       
+
+    fetch("http://localhost:5000/api/buildings/customer/" + customer.id).then(response => { return (response.json()) })
+        .then(buildings => {
+            console.log(buildings);
+            if (!buildings)
+                return;
+            $('#sbuilding').html(buildings.map(y => {
+                return '<option value="' + y.id + '">' + y.id + '</option>';
+            }));
+            if (buildings.length > 0) {
+                getBatteries(buildings[0].id);
+            }
+        });
+
+
+    });
+
+    function getBatteries(buildingId) {
+        $("#cnbattery").removeClass("d-none");
+        fetch("http://localhost:5000/api/batteries/customer/" + buildingId).then(response => { return (response.json()) })
+            .then(batteries => {
+                console.log(batteries);
+                if (!batteries)
+                    return;
+
+                $('#sbattery').html(batteries.map(y => {
+                    return '<option value="' + y.id + '">' + y.id + '</option>';
+                }));
+
+                if (batteries.length > 0) {
+                    getColumns(batteries[0].id);
+                }
+            });
+        };
+
+        // get all batteries the filter by customer_id
+    //function getBatteries(buildingId) {
+    //    fetch("http://localhost:5000/api/batteries/customer" + buildingId).then(response => { return (response.json()) })
+    //        .then(batteries => {
+    //            if(!batteries)
+    //                return;
+    //            batteries = batteries.filter(x => x.building_id == buildingId);
+    //            $('#sbattery').html(batteries.map(x => {
+    //                return '<button class="btn btn-primary" onclick="getColumns(' + x.id + ')">' + x.id + '</button> ';
+    //            }));
+    //        });
+    //}
+// get columns based on battery_id
+//function getColumns(batteryid) {
+//        batteryId = batteryid;
+//    fetch("http://localhost:5000/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
+//            .then(columns => {
+//                if (!columns){
+//                    return;
+//                }
+//                $('#scolumn').html(columns.map(x => {
+//                    return '<button class="btn btn-primary" onclick="getElevators(' + x.id + ')">' + x.id + '</button> ';
+//                }));
+//            });
+//    }
+
+
+function getColumns(batteryid) {
+        $("#cncolumn").removeClass("d-none");
+        fetch("http://localhost:5000/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
+            .then(columns => {
+                console.log(columns);
+                if (!columns) {
+                    return;
+                }
+                $('#scolumn').html(columns.map(y => {
+                    return '<option value="' + y.id + '">' + y.id + '</option>';
+                }));
+
+                if (columns.length > 0) {
+                    getElevators(columns[0].id);
+                }
+            });
+        }
+
+// get elevators based on columns_id
+function getElevators(columnid) {
+        $("#cnelevator").removeClass("d-none");
+    fetch("http://localhost:5000/api/elevators/customer/" + columnid).then(response => { return (response.json()) })
+        .then(elevators => {
+            console.log(elevators);
+                $('#selevator').html(elevators.map(y => {
+                    return '<option value="' + y.id + '">' + y.id + '</option>';
+                }));
+            });
+    }
+
+</script>

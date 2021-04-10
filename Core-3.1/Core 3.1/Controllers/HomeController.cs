@@ -23,37 +23,76 @@ namespace Core_3._1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+       
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _userManager = userManager;
         }
 
         [Authorize]
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+
         {
-            List<Building> BuildingsList = new List<Building>();
-            using (var httpClient = new HttpClient())
-            {
-                string api = "http://localhost:5000/api/api/buildings/{0}/building";
+            return View();
+
+        }
 
 
-                string data = User.Identity.Name;
-                string url = string.Format(api, data);
 
-                Console.WriteLine(url);
-                using (var response = await httpClient.GetAsync(url))
-
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    BuildingsList = JsonConvert.DeserializeObject<List<Building>>(apiResponse);
-                }
-            }
-            return View(BuildingsList);
+        //public IActionResult Intervention()
+        //{
 
 
+
+
+        //    IEnumerable<Building> building = null;
+
+        //    using (var client = new HttpClient())
+        //    {
+
+        //        client.BaseAddress = new Uri("http://localhost:5000/api/");
+        //        var responseTask = client.GetAsync("buildings");
+        //        responseTask.Wait();
+        //        var result = responseTask.Result;
+
+
+        //        if (result.IsSuccessStatusCode)
+        //        {
+        //            var apiResponse = result.Content.ReadAsAsync<IList<Building>>();
+        //            apiResponse.Wait();
+        //            building = apiResponse.Result;
+        //        }
+
+        //        else
+
+        //        {
+        //            building = Enumerable.Empty<Building>();
+        //            ModelState.AddModelError(string.Empty, "Server Error Occured.Please come back later");
+
+
+        //        }
+
+        //    }
+
+
+        //    return View(building);
+        //}
+
+  
+
+
+
+
+
+
+
+            //foreach (Building e in objResponse3)
+            //{
+            //    ViewBag.BuldingController += $"<option value='{e.Id}' name='{e.Id}' >Building # {e.Id} </option>";
+            //}
 
             //List<Battery> BatteriesList = new List<Battery>();
             //using (var httpClient = new HttpClient())
@@ -96,8 +135,8 @@ namespace Core_3._1.Controllers
 
 
 
-
-        }
+        
+        
 
         public IActionResult Privacy()
         {
@@ -110,23 +149,50 @@ namespace Core_3._1.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public IActionResult Intervention()
+        {
+            //string api3 = "http://localhost:5000/api/buildings/customer/{0}";
+            //string data = User.Identity.Name;
+            //string url3 = string.Format(api3, data);
+            //Console.WriteLine(url3);
 
+            //WebRequest request3 = (HttpWebRequest)WebRequest.Create(url3);
+            //WebResponse response3 = request3.GetResponse();
+            //StreamReader reader3 = new StreamReader(response3.GetResponseStream());
+            //string JSON_List3 = reader3.ReadToEnd();
 
-        //public ActionResult Admin()
-        //{
-        //    string apiUri = Url.HttpRouteUrl("DefaultApi", new { controller = "admin", });
-        //    ViewBag.ApiUrl = new Uri(Request.Url, apiUri).AbsoluteUri.ToString();
+            //List<Building> objResponse3 = JsonConvert.DeserializeObject<List<Building>>(JSON_List3);
 
-        //    return View();
+            //foreach (Building e in objResponse3)
+            //{
+            //    ViewBag.BuldingController += $"<option value='{e.Id}' name='{e.Id}' >Building # {e.Id} </option>";
+            //}
+            return View();
+        }
+        public IActionResult Products()
+        {
 
+            return View();
+        }
 
+        public void UserManager()
+        {
+            return;
+        }
+        private class CustomerUser
+        {
+        }
 
+     
+       
 
-                       // <h1> Html.Raw(ViewData.elevatorTable)</h1>
-        //}
+        private UserManager<CustomerUser> _userManager { get; set; }
 
+        private readonly ProductService _productService = new ProductService();
 
+        public ProductService ProductService => ProductService;
 
+        private UserManager<CustomerUser> userManager { get; set; }
 
 
 

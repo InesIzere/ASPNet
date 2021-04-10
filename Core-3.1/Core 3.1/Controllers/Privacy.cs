@@ -21,7 +21,7 @@ using RestSharp;
 
 namespace Core_3._1.Controllers
 {
-    public class Privacy
+    public class Privacy : Controller
     {
 
         

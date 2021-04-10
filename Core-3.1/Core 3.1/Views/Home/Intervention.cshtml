@@ -1,0 +1,132 @@
+﻿
+
+
+
+@using Microsoft.AspNetCore.Identity
+@using Core_3._1.Models;
+@inject UserManager<IdentityUser> UserManager
+@model Intervention
+<h2 class="text-center" style="margin-top: 80px; margin-bottom: 50px"> INTERVENTION FORM</h2>
+<!-- INtervention form -->
+<h3>
+    <div class="col-md-10 text-center selcust" style="font-size: 20px; margin-top: 10px">
+        <label for="scustomer">Customer*</label>
+        <input read-only value="@UserManager.GetUserName(User)" id="scustomer" class="form-control text-center" />
+    </div>
+    <div class="col-md-10 text-center selbuild selform" style="font-size: 20px; margin-top: 10px">
+        <label for="sbuilding">Building*</label>
+        <select id="sbuilding" class="form-control pointer" name="sbuilding"
+                style="font-size: 18px; margin-top: 20px" required>
+           
+        </select>
+    </div>
+    <div id="cnbattery" class="col-md-10 text-center selbatt selform d-none"
+         style="font-size: 20px; margin-top: 10px">
+        <label for="sbattery">Battery*</label>
+        <select id="sbattery" class="form-control pointer" name="sbattery" style="font-size: 18px; margin-top: 20px"
+                required>
+        </select>
+    </div>
+    <div id="cncolumn" class="col-md-10 text-center selcol selform d-none" style="font-size: 20px; margin-top: 10px">
+        <label for="scolumn">Column</label>
+        <select id="scolumn" class="form-control pointer" name="scolumn" style="font-size: 18px; margin-top: 20px">
+            <option value="">None</option>
+        </select>
+    </div>
+    <div id="cnelevator" class="col-md-10 text-center selelev selform d-none" style="font-size: 20px; margin-top: 10px">
+        <label for="selevator">Elevator</label>
+        <select id="selevator" class="form-control pointer" name="selevator"
+                style="font-size: 18px; margin-top: 20px">
+            <option value="">None</option>
+        </select>
+    </div>
+    <div class="col-md-10 text-center seldesc" style="font-size: 20px; margin-top: 10px; margin-bottom: 50px">
+        <label for="sdescription">Description</label>
+        <input type="text" placeholder="Description here" id="sdescription" class="form-control pointer"
+               name="sdescription" style="font-size: 18px; margin-top: 20px">
+    </div>
+    <div class="col-md-10 text-center seldesc" style="font-size: 20px; margin-top: 10px; margin-bottom: 50px">
+        <label id="lblmessagesucess" class="text-success d-none">Add intervention successful</label>
+        <label id="lblmessagefailied" class="text-error d-none">Add intervention failed</label>
+    </div>
+    </div>
+</h3>
+<div class="row">
+    <div class="col-md-12 text-center" style="margin-top: 20px">
+        <button id="btnsubmit" type="button" class="btn btn-red">SUBMIT</button>
+    </div>
+</div>
+
+
+
+
+<script>
+    var userEmail = '@UserManager.GetUserName(User)';
+    var userId = 0;
+  
+
+
+   console.log(userEmail);
+    fetch("http://localhost:5000/api/customers/email/" + userEmail).then(response => { return (response.json()) })
+        .then(customer => {
+            console.log(customer.id);
+           
+            userId = customer.id;
+            fetch("http://localhost:5000/api/buildings/customer/" + customer.id).then(response => { return (response.json()) })
+                .then(buildings => {
+                    console.log(buildings);
+                    if (!buildings)
+                        return;
+                    $('#sbuilding').html(buildings.map(y => {
+                        return '<option value="' + y.id + '">' + y.id + '</option>';
+                    }));
+                    if (buildings.length > 0) {
+                        getBatteries(buildings[0].id);
+                        //return '<button class="btn btn-primary" onclick="getBateries(' + y.id + ')">' + y.id + '</button> ';
+                    }
+                });
+        });
+    function getBatteries(buildingId) {
+        $("#cnbattery").removeClass("d-none");
+        fetch("http://localhost:5000/api/batteries/customer/" + buildingId).then(response => { return (response.json()) })
+            .then(batteries => {
+                if(!batteries)
+                    return;
+
+                 $('#sbattery').html(batteries.map(y => {
+                    return '<option value="' + y.id + '">' + y.id + '</option>';
+                }));
+                if(batteries.length > 0){
+                    getColumns(batteries[0].id);
+                   // return '<button class="btn btn-primary" onclick="getColumns(' + y.id + ')">' + y.id + '</button> ';
+                }
+            });
+    }
+function getColumns(batteryid) {
+        $("#cncolumn").removeClass("d-none");
+    fetch("http://localhost:5000/api/columns/customer/" + batteryid).then(response => { return (response.json()) })
+            .then(columns => {
+                if (!columns){
+                    return;
+                }
+                $('#scolumn').html(columns.map(y => {
+                    return '<option value="' + y.id + '">' + y.id + '</option>';
+                }));
+                if (columns.length > 0){
+                    getElevators(columns[0].id);
+                }
+            });
+}
+function getElevators(columnid) {
+        $("#cnelevator").removeClass("d-none");
+    fetch("http://localhost:5000/api/elevators/customer/" + columnid).then(response => { return (response.json()) })
+            .then(elevators => {
+                $('#selevator').html(elevators.map(y => {
+                    return '<option value="' + y.id + '">' + y.id + '</option>';
+                }));
+            });
+    }
+
+    
+
+</script>

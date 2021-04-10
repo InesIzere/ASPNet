@@ -18,31 +18,49 @@ using System.IO;
 
 namespace Core_3._1.Controllers
 {
-    public class Buildings
+    public class Buildings : Controller
     {
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            List<Building> BuildingsList = new List<Building>();
-            using (var httpClient = new HttpClient())
+            //Get Buildings
+
+            IEnumerable<Building> building = null;
+
+            using (var client = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://shimwerestapi.azurewebsites.net/api/buildings/id"))
+
+                client.BaseAddress = new Uri("http://localhost:5000/api/");
+                var responseTask = client.GetAsync("buildings");
+                responseTask.Wait();
+                var result = responseTask.Result;
+
+
+                if (result.IsSuccessStatusCode)
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    BuildingsList = JsonConvert.DeserializeObject<List<Building>>(apiResponse);
+                    var apiResponse = result.Content.ReadAsAsync<IList<Building>>();
+                    apiResponse.Wait();
+                    building = apiResponse.Result;
                 }
+
+                else
+
+                {
+                    building = Enumerable.Empty<Building>();
+                    ModelState.AddModelError(string.Empty, "Server Error Occured.Please come back later");
+
+
+                }
+
             }
 
 
 
-            return View();
+            return View(building);
 
 
         }
 
-        private IActionResult View()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 
 }

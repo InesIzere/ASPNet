@@ -29,5 +29,6 @@ namespace Core_3._1.Models
         public virtual Building Building { get; set; }
         public virtual ICollection<Column> Column { get; set; }
         public virtual ICollection<Intervention> Intervention { get; set; }
+        public List<Column> columns { get; set; }
     }
 }

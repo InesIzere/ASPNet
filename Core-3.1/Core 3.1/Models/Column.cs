@@ -24,6 +24,7 @@ namespace Core_3._1.Models
         public virtual Battery Battery { get; set; }
         public virtual ICollection<Elevator> Elevator { get; set; }
         public virtual ICollection<Intervention> Intervention { get; set; }
+        public List<Elevator> elevator { get; set; }
     }
 
 }

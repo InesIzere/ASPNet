@@ -4,19 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Core_3._1.Models
+
 {
+
+
+
+    namespace REST
+    {
+        internal class Intervention
+        {
+        }
+    }
     public partial class Intervention
     {
+
+
         public long Id { get; set; }
-        public long AuthorId { get; set; }
+        public Nullable<long> AuthorId { get; set; }
         public long CustomerId { get; set; }
         public long BuildingId { get; set; }
         public long? BatteryId { get; set; }
-        public long? ColumnId { get; set; }
-        public long? ElevatorId { get; set; }
-        public long? EmployeeId { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public Nullable<long> ColumnId { get; set; }
+        public Nullable<long> ElevatorId { get; set; }
+        public Nullable<long> EmployeeId { get; set; }
+        public Nullable<DateTime> StartDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
         public string Result { get; set; }
         public string Report { get; set; }
         public string Status { get; set; }

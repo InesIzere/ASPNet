@@ -160,3 +160,5 @@ C:\Users\izere\OneDrive\Desktop\Core-3.1\Core 3.1\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\izere\OneDrive\Desktop\Core-3.1\Core 3.1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Buildings.cshtml.g.cs
 C:\Users\izere\OneDrive\Desktop\Core-3.1\Core 3.1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\izere\OneDrive\Desktop\Core-3.1\Core 3.1\bin\Debug\netcoreapp3.1\RestSharp.dll
+C:\Users\izere\OneDrive\Desktop\Core-3.1\Core 3.1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Intervention.cshtml.g.cs
+C:\Users\izere\OneDrive\Desktop\Core-3.1\Core 3.1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Products.cshtml.g.cs

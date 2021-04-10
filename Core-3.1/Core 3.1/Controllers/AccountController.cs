@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SLE_System.Models;
-
-using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using Core_3._1.Models;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Text;
-using System.Net;
-using System.IO;
 
 namespace Core_3._1.Controllers
 {
@@ -41,9 +33,9 @@ namespace Core_3._1.Controllers
         {
 
             var httpClient = new HttpClient();
-             var response =  await httpClient.GetAsync(requestUri:$"http://localhost:5000/api/customers/{model.Email}");
+            HttpResponseMessage response = await httpClient.GetAsync("https://localhost:5000/api/customers/email/{model.Email}");
 
-            if (ModelState.IsValid && response.StatusCode == HttpStatusCode.OK && response.Content.Headers.ContentLength>2)
+            if (ModelState.IsValid && response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var user = new IdentityUser
                 {

@@ -7,7 +7,7 @@ namespace Core_3._1.Models
 {
     public partial class Building
     {
-        internal string ReturnedJson;
+       
 
         public Building()
         {
@@ -30,5 +30,7 @@ namespace Core_3._1.Models
         public virtual ICollection<Battery> Battery { get; set; }
         public virtual ICollection<BuildingDetails> BuildingDetails { get; set; }
         public virtual ICollection<Intervention> Intervention { get; set; }
+
+        public List<Battery> batteries { get; set; }
     }
 }
