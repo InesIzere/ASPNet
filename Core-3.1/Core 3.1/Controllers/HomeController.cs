@@ -7,13 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Core_3._1.Models;
 using Microsoft.AspNetCore.Authorization;
-
-
-
 using System.Net.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Identity;
-
 using System.Text;
 using System.Net;
 using System.IO;

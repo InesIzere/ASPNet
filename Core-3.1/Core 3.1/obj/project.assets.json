@@ -8708,23 +8708,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\izere\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\TJWev\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\izere\\OneDrive\\Desktop\\Core-3.1\\Core 3.1\\Core 3.1.csproj",
+      "projectUniqueName": "C:\\Users\\TJWev\\Desktop\\FINAL\\ASPNet\\Core-3.1\\Core 3.1\\Core 3.1.csproj",
       "projectName": "Core 3.1",
-      "projectPath": "C:\\Users\\izere\\OneDrive\\Desktop\\Core-3.1\\Core 3.1\\Core 3.1.csproj",
-      "packagesPath": "C:\\Users\\izere\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\izere\\OneDrive\\Desktop\\Core-3.1\\Core 3.1\\obj\\",
+      "projectPath": "C:\\Users\\TJWev\\Desktop\\FINAL\\ASPNet\\Core-3.1\\Core 3.1\\Core 3.1.csproj",
+      "packagesPath": "C:\\Users\\TJWev\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\TJWev\\Desktop\\FINAL\\ASPNet\\Core-3.1\\Core 3.1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\izere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TJWev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

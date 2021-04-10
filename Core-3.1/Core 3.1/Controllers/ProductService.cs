@@ -36,7 +36,7 @@ namespace Core_3._1.Models
         // // ========== Function that calls endpoint /api/Customers/id to get all the data from the customer that is logged at the portal ============
         public Customer getFullCustomerInfo(string email)
         {
-            var result = _httpClient.GetAsync("http://localhost:5000/api/customers/email/" + email).Result;
+            var result = _httpClient.GetAsync("https://rocketclevatorscustomer.herokuapp.com/api/customers/email/" + email).Result;
             var contentBody = result.Content.ReadAsStringAsync().Result;
             var serializerSettings = new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects };
             Customer customer = JsonConvert.DeserializeObject<Customer>(contentBody);

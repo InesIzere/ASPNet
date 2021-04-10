@@ -10,6 +10,97 @@ using SLE_System.Models;
 
 namespace Core_3._1.Controllers
 {
+
+    //[Authorize]
+    //public class AccountController : Controller
+    //{
+    //    private readonly UserManager<IdentityUser> _userManager;
+    //    private readonly SignInManager<IdentityUser> _signInManager;
+
+    //    public AccountController()
+    //    {
+    //    }
+
+    //    public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+    //    {
+    //        _userManager = userManager;
+    //        _signInManager = signInManager;
+    //    }
+
+
+    //    //
+    //    // GET: /Account/Login
+    //    [AllowAnonymous]
+    //    public IActionResult Login()
+    //    {
+    //        return View();
+    //    }
+
+    //    //
+    //    // POST: /Account/Login
+    //    [HttpPost]
+    //    [AllowAnonymous]
+    //    [ValidateAntiForgeryToken]
+    //    public async Task<IActionResult> Login(LoginViewModel user)
+    //    {
+    //        if (ModelState.IsValid)
+    //        {
+    //            var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, user.RememberMe, false);
+    //            if (result.Succeeded)
+    //            {
+    //                return RedirectToAction("Index", "Home");
+
+    //            } else
+    //            {
+    //                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+    //                return View(user);
+    //            }
+    //        }
+    //        return View(user);
+
+    //    }
+
+    //    //
+    //    // GET: /Account/Register
+    //    [AllowAnonymous]
+    //    public ActionResult Register()
+    //    {
+    //        return View();
+    //    }
+
+    //    //
+    //    // POST: /Account/Register
+    //    [AllowAnonymous]
+    //    [ValidateAntiForgeryToken]
+    //    public async Task<IActionResult> Register(RegisterViewModel model)
+    //    {
+    //        if (ModelState.IsValid)
+    //        {
+    //                var httpClient = new HttpClient();
+    //                var result = await _userManager.CreateAsync(userManager, model.Password);
+    //            if (result.Succeeded)
+    //            {
+    //                await SignInManager<IdentityUser>.SignInAsync(userManager, isPersistent: false, rememberBrowser: false);
+
+    //                return RedirectToAction("Index", "Home");
+    //            }
+                
+    //        }
+
+    //        // If we got this far, something failed, redisplay form
+    //        return View(model);
+    //    }
+
+    //    [AllowAnonymous]
+    //        public async Task<IActionResult> Logout()
+    //        {
+    //            await _signInManager.SignOutAsync();
+
+    //            return RedirectToAction("Login");
+    //        }
+
+    //}
+
     public class AccountController : Controller
     {
 
@@ -32,10 +123,10 @@ namespace Core_3._1.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
 
-            var httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.GetAsync("https://localhost:5000/api/customers/email/{model.Email}");
-
-            if (ModelState.IsValid && response.StatusCode == System.Net.HttpStatusCode.OK)
+            //var httpClient = new HttpClient();
+            //HttpResponseMessage response = await httpClient.GetAsync("https://rocketclevatorscustomer.herokuapp.com/api/customers/email/{model.Email}");
+            // && response.StatusCode == System.Net.HttpStatusCode.OK
+            if (ModelState.IsValid)
             {
                 var user = new IdentityUser
                 {
@@ -49,7 +140,7 @@ namespace Core_3._1.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 foreach (var error in result.Errors)

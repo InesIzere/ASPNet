@@ -33,7 +33,7 @@ namespace Core_3._1.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:5000/api/");
+                    client.BaseAddress = new Uri("https://rocketclevatorscustomer.herokuapp.com/api/");
                     //HTTP GET
                     var responseTask = client.GetAsync("customers");
                     responseTask.Wait();
@@ -67,7 +67,7 @@ namespace Core_3._1.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:5000/api/");
+                    client.BaseAddress = new Uri("https://rocketclevatorscustomer.herokuapp.com/api/");
 
                     //HTTP POST
                     var postTask = client.PostAsJsonAsync<Intervention>("customers", (Intervention)customer);
